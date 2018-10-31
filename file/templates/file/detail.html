@@ -1,0 +1,44 @@
+{#{% extends 'file/base.html' %}#}
+{#{% block body%}#}
+{##}
+{##how to show the file#}
+{##}
+{#<h1>{{  file.file_name }}</h1>#}
+{#<h1>{{  file.user }}</h1>#}
+{#{% endblock %}#}
+
+{% extends 'file/base.html' %}
+{% block title %}{{ file }}{% endblock %}
+{% block files_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+
+                            <a href="{{  file.org_file.url }}">
+    {#                            <img src="{{ album.album_logo.url }}" class="img-responsive">#}
+                                 <h4>{{ file.file_name }}</h4>
+                            </a>
+
+
+                    click to view/download the file
+                    <h1>{{ file.file_name }} </h1>
+                    <h2>{{ file.user }}</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}

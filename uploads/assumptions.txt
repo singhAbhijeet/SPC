@@ -1,2 +1,0 @@
-1. in ques 3 the script , data folder and testcases need to be in same directory to get executed
-2. In q1 2 part i have made an awk file ex.awk plaese make sure it is in the same directory as that of couseextractor's one.

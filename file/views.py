@@ -9,10 +9,11 @@ from django.views import generic
 from django.views.generic import View
 from .forms  import UserForm
 from django.contrib.auth.decorators  import login_required
-
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
 
 # Create your views here.
-@method_decorator(login_required)
+# @method_decorator(login_required,name='get_queryset')
 class IndexView(generic.ListView):
 	template_name = 'file/index.html'
 	context_object_name =  'all_files'
@@ -27,11 +28,11 @@ class DetailView(generic.DetailView):
 
 class FileCreate(CreateView):
 	model = File #for what this view is for
-	fields = ['user', 'file_name', 'org_file']
+	fields = ['user', 'location', 'org_file']
 
 class FileUpdate(UpdateView):
 	model = File #for what this view is for
-	fields = ['user', 'file_name', 'org_file']
+	fields = ['user', 'location', 'org_file']
 
 class FileDelete(DeleteView):
 	model = File #for what this view is for

@@ -3,9 +3,10 @@
 {##}
 {##how to show the file#}
 {##}
-{#<h1>{{  file.file_name }}</h1>#}
+{#<h1>{{  file.location }}</h1>#}
 {#<h1>{{  file.user }}</h1>#}
 {#{% endblock %}#}
+
 
 {% extends 'file/base.html' %}
 {% block title %}{{ file }}{% endblock %}
@@ -24,12 +25,12 @@
 
                             <a href="{{  file.org_file.url }}">
     {#                            <img src="{{ album.album_logo.url }}" class="img-responsive">#}
-                                 <h4>{{ file.file_name }}</h4>
+                                 <h4>{{ file.location }}</h4>
                             </a>
 
 
                     click to view/download the file
-                    <h1>{{ file.file_name }} </h1>
+                    <h1>{{ file.location }} </h1>
                     <h2>{{ file.user }}</h2>
                 </div>
             </div>

@@ -21,6 +21,7 @@
 {##}
 
 {#{{  all_files = File.objects.filter(user=request.user) }}#}
+
     <div class="albums-container container-fluid">
 {% if user %}
 
@@ -31,9 +32,11 @@
             </div>
             {% if all_files %}
                 {% for file in all_files %}
+                    {% if file.user == user.username %}
                     <div class="col-sm-4 col-lg-2">
                         <div class="thumbnail">
                             <a href="{{  file.org_file.url }}">
+                    
     {#                            <img src="{{ album.album_logo.url }}" class="img-responsive">#}
                                  <h4>{{ file.file_name }}</h4>
                             </a>
@@ -61,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
                 {% endfor %}
             {% else %}

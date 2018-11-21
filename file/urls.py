@@ -15,9 +15,9 @@ urlpatterns = [
 	url(r'^(?P<pk>[0-9]+)/$' , views.DetailView.as_view(), name='detail'),
     #
 	# #for create view
-	  url(r'add/$', views.FileCreate.as_view(), name='file-add'),
+	  url(r'add/$', views.upload_file , name='file-add'),
 	# #file/add/2/
-	url(r'update/(?P<pk>[0-9]+)/$', views.FileUpdate.as_view(), name='file-update'),
+	# url(r'update/(?P<pk>[0-9]+)/$', views.FileUpdate.as_view(), name='file-update'),
     #
 	 url(r'delete/(?P<pk>[0-9]+)/$', views.FileDelete.as_view(), name='file-delete'),
     #

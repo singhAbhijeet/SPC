@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^file/', include('file.urls')),
     url(r'^$', include('file.urls')),
+    url(r'^files/', include('db_file_storage.urls')),
 
     # url(r'^$', include('templates.urls')),
 ]

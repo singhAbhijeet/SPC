@@ -1,26 +1,8 @@
 {% extends 'file/base.html' %}
 {% block title%} Files {% endblock%}
 {% block body%}
-{#{% if all_files %}#}
-{#	<div class="containor-fluid">#}
-{#        <h2> Here are all of your files </h2>#}
-{#    </div>#}
-{#	<ul>#}
-{#		<!--queried items in  object list-->#}
-{##}
-{#		{% for file in all_files %}#}
-{#		<li><h4><a href={%  url 'file:detail' file.id %}>{{ file.file_name}}</a></h4> <a href={%  url 'file:file-update' file.id %} >update</a>#}
-{#            <a href={% url 'file:file-delete' file.id %}>delete</a> </li>#}
-{##}
-{#		{% endfor %}#}
-{#	</ul>#}
-{#{% else %}#}
-{#	<h3> you dont have any files </h3>#}
-{#    <h4> Go on to add-files to add your files here</h4>#}
-{#{% endif %}#}
-{##}
 
-{#{{  all_files = File.objects.filter(user=request.user) }}#}
+
 
     <div class="albums-container container-fluid">
 {% if user %}
@@ -32,13 +14,16 @@
             </div>
             {% if all_files %}
                 {% for file in all_files %}
-                    {% if file.user == user.username %}
+                    <!-- {% if file.user == user %} -->
                     <div class="col-sm-4 col-lg-2">
                         <div class="thumbnail">
                             <a href="{{  file.org_file.url }}">
-                    
-    {#                            <img src="{{ album.album_logo.url }}" class="img-responsive">#}
-                                 <h4>{{ file.file_name }}</h4>
+                                <a href='{% url "db_file_storage.download_file" %}?name={{ file.org_file }}'>
+                                        <i>{{ file.file_name }}</i>
+                                    </a>
+                                                        
+                                        <!-- {#<img src="{{ album.album_logo.url }}" class="img-responsive">#} -->
+                                 <h4>{{ file.file_name  }}</h4>
                             </a>
                             <div class="caption">
                                 <h2>{{ file.user }}</h2>
@@ -64,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    {% endif %}
+                    <!-- {% endif %} -->
                     {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
                 {% endfor %}
             {% else %}

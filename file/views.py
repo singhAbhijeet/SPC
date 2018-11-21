@@ -7,7 +7,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth import authenticate , login, logout
 from django.views import generic
 from django.views.generic import View
-from .forms  import UserForm
+from .forms  import UserForm , UploadFileForm
 from django.contrib.auth.decorators  import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
@@ -26,13 +26,25 @@ class DetailView(generic.DetailView):
 	template_name = 'file/detail.html'
 
 
-class FileCreate(CreateView):
-	model = File #for what this view is for
-	fields = ['user', 'location', 'org_file']
+# class FileCreate(CreateView):
+# 	model = File #for what this view is for
+# 	fields = ['user', 'file_name', 'org_file']
 
-class FileUpdate(UpdateView):
-	model = File #for what this view is for
-	fields = ['user', 'location', 'org_file']
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            a = form.save(commit=False)
+            a.user = request.user#parentfolder baaki
+            a.save()
+            return redirect('file:index')
+    else:
+        form = UploadFileForm()
+    return render(request, 'file/file_form.html', {'form': form})
+
+# class FileUpdate(UpdateView):
+# 	model = File #for what this view is for
+# 	fields = ['user', 'file_name', 'org_file']
 
 class FileDelete(DeleteView):
 	model = File #for what this view is for

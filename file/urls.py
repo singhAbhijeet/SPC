@@ -21,7 +21,8 @@ urlpatterns = [
 	# #file/add/2/
 	# url(r'update/(?P<pk>[0-9]+)/$', views.FileUpdate.as_view(), name='file-update'),
     #
-	 url(r'delete/(?P<pk>[0-9]+)/$', views.FileDelete.as_view(), name='file-delete'),
+	 url(r'delete/(?P<pk>[0-9]+)/$', views.FileDelete, name='file-delete'),
+	 url(r'delete/fol/(?P<pk>[0-9]+)/$', views.FolderDelete, name='fol-delete'),
     #
 	 url(r'register/$',views.UserFormView.as_view(), name='register'),
 	 url(r'^$', views.login_user, name='login_user'),

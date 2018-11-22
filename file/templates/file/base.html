@@ -27,7 +27,7 @@
 
 	 <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
-                
+                <li class="{% block register_active %}{% endblock %}"><a href=#>{% block folder %}ADD-FILES{% endblock %}</a></li>
                 <li class="{% block login_active %}{% endblock %}"><a href={%  url 'file:logout_user' %}>Log Out</a></li>
             </ul>
         </div>

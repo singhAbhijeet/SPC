@@ -1,5 +1,7 @@
 {% extends 'file/base.html' %}
 {% block title%} Files {% endblock%}
+{% block folder %}{{ name }}{% endblock %}
+
 {% block body%}
 
 
@@ -79,6 +81,14 @@
                             <div class="caption">
                                 <h2>{{ fol.user }}</h2>
 
+
+                            <form action="{% url 'file:fol-delete'  fol.pk  %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="album_id" value="{{ fol.id }}" />
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </form>
                                 
 
                             </div>

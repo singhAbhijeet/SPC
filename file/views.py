@@ -17,10 +17,11 @@ from django.views.generic import TemplateView
 def indexview(request , pk):
     PAK = pk
     curr = Folder.objects.filter(pk = pk)
+    name = curr[0].folder_name
     all_files = File.objects.filter(parent = curr[0], user = request.user)
     all_folders = Folder.objects.filter(parent = curr[0], user = request.user)
     print(all_folders)
-    return render(request, 'file/index.html', {'all_folders':all_folders,'all_files':all_files  ,'PAK':PAK})
+    return render(request, 'file/index.html', {'all_folders':all_folders,'all_files':all_files  ,'PAK':PAK, 'name':name})
 
 # class DetailView(generic.DetailView):
 # 	#deMANDS pk
@@ -62,9 +63,17 @@ def upload_folder(request, pk):
 # 	model = File #for what this view is for
 # 	fields = ['user', 'file_name', 'org_file']
 
-class FileDelete(DeleteView):
-	model = File #for what this view is for
-	success_url = reverse_lazy('file:index',1)
+def FileDelete(request, pk):
+    f = File.objects.filter(pk=pk)
+    p = f[0].parent.pk
+    f.delete()
+    return redirect('/file/home/' + str(p) + "/")
+
+def FolderDelete(request, pk):
+    f = File.objects.filter(pk=pk)
+    p = f[0].parent.pk
+    f.delete()
+    return redirect('/file/home/' + str(p) + "/")
 
 
 class UserFormView(View):

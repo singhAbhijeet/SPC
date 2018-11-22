@@ -12,7 +12,7 @@
             <div class="col-sm-12">
                 <h3>{{ user.username }}'s Files</h3>
             </div>
-            {% if all_files %}
+            
                 {% for file in all_files %}
                     <!-- {% if file.user == user %} -->
                     <div class="col-sm-4 col-lg-2">
@@ -29,8 +29,7 @@
                                 <h2>{{ file.user }}</h2>
 
 
-                                <!-- View Details -->
-                                <a href="{% url 'file:detail' file.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                    
 
                                 <!-- Delete Album -->
                                 <form action="{% url 'file:file-delete' file.id %}" method="post" style="display: inline;">
@@ -41,10 +40,7 @@
                                     </button>
                                 </form>
 
-                                <!-- Favorite Album -->
-    {#                            <a href="{% url 'music:favorite_album' album.id %}" class="btn btn-default btn-sm btn-favorite" role="button">#}
-    {#                                <span class="glyphicon glyphicon-star {% if album.is_favorite %}active{% endif %}"></span>#}
-    {#                            </a>#}
+                                
 
                             </div>
                         </div>
@@ -52,16 +48,60 @@
                     <!-- {% endif %} -->
                     {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
                 {% endfor %}
-            {% else %}
+            
                 <div class="col-sm-12">
                     <br>
-                    <a href="{% url 'file:file-add' %}">
+                    <a href="{% url 'file:file-add' PAK %}">
                         <button type="button" class="btn btn-success">
                             <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a File
                         </button>
                     </a>
                 </div>
-            {% endif %}
+           
+    </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>{{ user.username }}'s Folders</h3>
+            </div>
+                
+                {% for fol in all_folders %}
+                <div class="col-sm-4 col-lg-2">
+                        <div class="thumbnail">
+                            <a href="{{  file.org_file.url }}">
+                                <a href='http://127.0.0.1:8000/file/home/{{ fol.pk }}/'>
+                                        <i>{{ fol.folder_name }}</i>
+                                    </a>
+                                                        
+                                        <!-- {#<img src="{{ album.album_logo.url }}" class="img-responsive">#} -->
+                                 <h4>{{ fol.folder_name  }}</h4>
+                            </a>
+                            <div class="caption">
+                                <h2>{{ fol.user }}</h2>
+
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- {% if file.user == user %} -->
+                    <!-- <p> {{ fol.user }} </p> -->
+                    
+
+                    <!-- {% endif %} -->
+                    <!-- {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %} -->
+                {% endfor %}
+            
+                <div class="col-sm-12">
+                    <br>
+                    <a href="{% url 'file:folder-add' PAK %}">
+                        <button type="button" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Folder
+                        </button>
+                    </a>
+                </div>
+            
     </div>
 {% else %}
     <h2>OOPs sorry peeps you got logged out please login again</h2>

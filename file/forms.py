@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from db_file_storage.form_widgets import DBClearableFileInput
-from .models import File 
+from .models import File , Folder 
 
 
 class UploadFileForm(forms.ModelForm):
@@ -13,6 +13,13 @@ class UploadFileForm(forms.ModelForm):
 		widgets = {
 			'file': DBClearableFileInput
 		}
+
+class UploadFolderForm(forms.ModelForm):
+    
+	class Meta:
+		model = Folder
+		fields = ['folder_name']
+		
 
 
 class UserForm(forms.ModelForm):

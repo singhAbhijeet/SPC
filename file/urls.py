@@ -9,13 +9,15 @@ urlpatterns = [
 	# /music/
 
 
-	url(r'^home/$',views.IndexView.as_view(), name='index'),
+	url(r'^home/(?P<pk>[0-9]+)/$',views.indexview, name='index'),
 	# /music/(some id)
 	# the int is saved as single int in album_id
-	url(r'^(?P<pk>[0-9]+)/$' , views.DetailView.as_view(), name='detail'),
+	# url(r'^(?P<pk>[0-9]+)/$' , views.DetailView.as_view(), name='detail'),
     #
 	# #for create view
-	  url(r'add/$', views.upload_file , name='file-add'),
+	url(r'add/(?P<pk>[0-9]+)/$', views.upload_file , name='file-add'),
+
+	url(r'add-folder/(?P<pk>[0-9]+)/$', views.upload_folder , name='folder-add'),
 	# #file/add/2/
 	# url(r'update/(?P<pk>[0-9]+)/$', views.FileUpdate.as_view(), name='file-update'),
     #
